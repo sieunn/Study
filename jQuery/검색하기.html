@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>검색하기</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#검색박스").keyup(function(){
+                const 검색박스 = $("#검색박스").val();
+                var 검색결과확인 = false; //바뀌는 값이기 때문에 const가 아닌 var로 지정
+
+                $('li').each(function(){
+                    var text = $(this).text(); // li값을 text에 넣기
+                    //this는 li요소를 가르키고, .text()는 li요소를 텍스트값으로 반환하는 내용
+
+                    if(text.indexOf(검색박스)===-1){ //li값과 검색박스에 입력된 값을 비교해서 일치하지 않으면
+                        //  반복되는 li 요소의 텍스트에 검색박스에 입력된 내용이 포함되어 있지 않을 때
+                        // .indexOf() 메서드는 문자열에서 특정 문자열을 찾아 그 위치를 반환
+                        $(this).hide(); //li 요소 숨기기
+                    }else{ //일치하면
+                        $(this).show(); //li 요소 보요주기
+                        검색결과확인 = true;
+                    }
+                });
+
+                if(검색결과확인){
+                    $("#검색결과").hide(); // 검색결과확인이 true이면 검색결과가 없습니다. 숨기기
+                }else{
+                    $("#검색결과").show(); // 검색결과확인이 false이면 검색결과가 없습니다. 보여주기
+                }
+            });
+        });
+    </script>
+    <style>
+        #검색결과{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>햄버거 패스트푸드</h1>
+    <div class="container">
+        <input type="text" id="검색박스" placeholder="찾는 패스트푸드점 검색하기">
+        <ul id="햄버거가게리스트">
+            <li>맘스터치</li>
+            <li>버거킹</li>
+            <li>맥도날드</li>
+            <li>롯데리아</li>
+            <li>KFC</li>
+        </ul>
+        <p id="검색결과">검색결과가 없습니다.</p>
+    </div>
+</body>
+</html>
