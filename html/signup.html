@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>내 블로그 / 방문자 회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0;
+      }
+      /* 네비게이션 꾸미기 */
+      nav ul {
+        list-style: none;
+        padding: 0;
+      }
+      nav ul li {
+        display: inline;
+        margin: 0 10px; /*상하 0, 좌우10*/
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+      }
+
+      /*class container 꾸미기*/
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+      }
+      /*class posts 꾸미기*/
+      .posts {
+        flex: 2;
+        margin-right: 20px;
+      }
+      /*div class posts밑에잇는 article 클래스 꾸미기*/
+      .posts .article {
+        background-color: white;
+        margin-bottom: 10px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #f2f2f2;
+      }
+      .posts .article h2 {
+        margin-top: 0;
+      }
+      .posts .article a {
+        color: #333;
+        text-decoration: none;
+      }
+      /*aside class 꾸며주기*/
+      .aside {
+        flex: 1;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>내 블로그에 오신 것을 환영합니다.</h1>
+      <nav>
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">소개</a></li>
+          <li><a href="#">연락처</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="posts">
+        <!--article : 블로그나 글 뉴스기사, 포럼 게시물 등과 같이 독립적으로
+                        작성하거나 재사용할 수 있는 내용을 작성할 때 사용
+        -->
+        <div class="article">
+          <h2>블로그 글 제목1</h2>
+          <p>
+            첫번째 블로그 글 내용입니다. 우리 블로그에는 다양한 정보를 담고
+            있습니다.
+          </p>
+          <a href="#">더보기</a>
+        </div>
+
+        <div class="article">
+          <h2>블로그 글 제목 2</h2>
+          <p>여기는 블로그로 소통하고 정보를 나누는 공간입니다.</p>
+          <a href="#">더보기</a>
+        </div>
+      </div>
+
+      <!--aside : 본문 내용과 간접적으로 관련된 내용을 표시할 때 사용
+                    예를 들어 블로그 페이지의 사이드바, 광고, 관련링크, 저자정보 등
+    -->
+      <div class="aside">
+        <h2>소개</h2>
+        <p>
+          안녕하세요. 저의 블로그입니다. 제 블로그에 오신것을 환영합니다. 여기서
+          다양한 생각과 경헙을 공유합니다.
+        </p>
+      </div>
+
+      <style>
+        /*visitor-comment 방문자 댓글 공간 꾸미기*/
+        .visitor-comments {
+          flex: 1 1 100%;
+          background-color: white;
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px #f2f2f2;
+          margin-top: 20px;
+        }
+        .visitor-comments h2 {
+          margin-top: 0;
+        }
+        .visitor-comments form {
+          display: flex;
+          flex-direction: column;
+        }
+        .visitor-comments lable {
+          margin: 10px 0 5px; /*위 왼쪽오른쪽 아래*/
+        }
+        .visitor-comments input,
+        .visitor-comments textarea {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        /*  .visitor-comments button 꾸며주기*/
+        .visitor-comments button {
+          border: none;
+          background-color: #333;
+          color: white;
+          margin-top: 10px;
+          padding: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        footer {
+          text-align: center;
+          padding: 20px 0;
+          background-color: #333;
+          color: white;
+        }
+      </style>
+      <div class="visitor-comments">
+        <h2>방문자 회원가입</h2>
+        <form action="#" method="post">
+          <label>이름: </label>
+
+          <input type="text" id="이름" required/>
+          <label>아이디 : </label>
+
+          <input type="text" id="아이디" />
+          <label>비밀번호 :</label>
+
+          <input type="password" id="비밀번호1" />
+          <label>비밀번호 확인 :</label>
+
+          <input type="password" id="비밀번호2" />
+          
+          <button type="submit" onclick="가입하기()">제출</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      function 가입하기() {
+        const name = $("#이름").val(); //이름정보 가져오기
+        const pw1 = $("#비밀번호1").val(); // 비밀번호1 정보 가져오기
+        const pw2 = $("#비밀번호2").val(); // 비밀번호1 정보 가져오기
+        const id = $("#아이디").val();
+        const namePattern = /^[가-힇]{2,10}$/;
+        const idPattern = /^[a-z]{5,10}$/;
+
+        //정규식과 작성한 이름이 정규식에 부합하는지 확인테스트
+        //만약 테스트 결과가 일치하지 않다면 true 로 표현
+        if (!namePattern.test(name)) {
+          // ! 모든것을 부정 == 참
+          alert("유효하지 않은 이름 형식입니다.");
+          //일치하지 않다 알림이 뜨고 회원가입을 하지 못하게 하려면
+          return false; //정규식과 작성한 이름이 일치하지 않으니 회원가입 못하게 돌려보냄
+        }
+        //비밀번호1과 비밀번호2가 일치하는지 확인
+        if (pw1 !== pw2) {
+          //비번1과 비번2가 일치하지 않을 때 true
+          alert("비밀번호가 일치하지 않습니다.");
+          return false; //비밀번호가 일치하지않으므로 제출을 막아 회원가입 못하게 돌려보냄
+        }
+
+        //아이디가 정규식과 일치하지 않으면 알림창 보이게 설정
+        if(!idPattern.test(id)){
+            alert("잘못된 아이디 형태입니다.");
+            return false;
+        }
+
+          //이름과 비번1 비번2가 원하는데로 모두 일치
+        alert("이름과 비밀번호가 모두 유효합니다. 회원가입이 가능합니다.");
+        return true; // 지나갈수 있도록 true를 설정
+        }
+
+    </script>
+    <footer>
+      <p>&copy; 2024 내 블로그. 모든 권리 보유.</p>
+    </footer>
+  </body>
+</html>

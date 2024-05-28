@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>index 연습</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*header*/
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /*class container*/
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .posts {
+            flex: 2;
+        }
+        .aside{
+            flex: 1;
+        }
+        .article {
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 0 0 10px #dbdbdb;
+        }
+        .article a{
+            color: #333;
+            text-decoration: none;
+        }
+        .aside{
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 0 0 10px #dbdbdb;
+        }
+        footer{
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .visitor-comments{
+            flex: 1 1 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #dbdbdb;
+        }
+        .visitor-comments form{
+            display: flex;
+            flex-direction: column;
+        }
+        .visitor-comments input,
+        .visitor-comments textarea{
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .visitor-comments button{
+            margin-top: 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>저의 블로그에 오신것을 환영합니다.</h1>
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">소개<a></li>
+                <li><a href="#">연락처</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="posts">
+            <div class="article">
+                <h2>블로그 글 제목</h2>
+                <p>
+                    첫번째 블로그 글 내용입니다. 우리 블로그에는 다양한 정보를 담고
+                    있습니다.
+                </p>
+                <a href="#">더보기</a>
+            </div>
+            <div class="article">
+                <h2>블로그 글 제목</h2>
+                <p>
+                    두번째 블로그 글 내용입니다. 우리 블로그에는 다양한 정보를 담고
+                    있습니다.
+                </p>
+                <a href="#">더보기</a>
+            </div>
+        </div>
+        <div class="aside">
+            <h2>소개</h2>
+            <p>
+                안녕하세요. 저의 블로그입니다. 제 블로그에 오신것을 환영합니다. 여기서
+                다양한 생각과 경험을 공유합니다.
+            </p>
+        </div>
+
+        <div class="visitor-comments">
+            <h2>방문자 의견</h2>
+            <form action="#" method="past">
+                <label>이름 : </label>
+                <input type="text">
+                <label>의견 : </label>
+                <textarea rows="4"></textarea>
+                <button type="submit">제출하기</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 내 블로그. 모든 권리 보유.</p>
+    </footer>
+</body>
+
+</html>

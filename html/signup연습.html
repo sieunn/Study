@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>블로그 / 회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        header{
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+        nav ul{
+            list-style: none;
+        }
+        nav ul li{
+            display: inline;
+            margin: 10px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+        }
+        body{
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+            border-radius: 5px;
+        }
+        .posts{
+            flex: 2;
+            margin: 10px;
+        }
+        .article{
+            background-color: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        .article a{
+            text-decoration: none;
+            color: #333;
+        }
+        .aside{
+            flex:1;
+            background-color: white;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        footer{
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>저의 블로그에 오신것을 환영합니다.</h1>
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">소개</a></li>
+                <li><a href="#">연락처</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="posts">
+            <div class="article">
+                <h2>블로그 글 제목</h2>
+                <p>
+                    첫번째 블로그 글 내용입니다. 우리 블로그에는 다양한 정보를 담고
+                    있습니다.
+                </p>
+                <a href="#">더보기</a>
+            </div>
+            <div class="article">
+                <h2>블로그 글 제목</h2>
+                <p>
+                    첫번째 블로그 글 내용입니다. 우리 블로그에는 다양한 정보를 담고
+                    있습니다.
+                </p>
+                <a href="#">더보기</a>
+            </div>
+        </div>
+        <div class="aside">
+            <h2>소개</h2>
+            <p>
+                안녕하세요. 저의 블로그입니다. 제 블로그에 오신것을 환영합니다. 여기서
+                다양한 생각과 경헙을 공유합니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="visitor-comments">
+        <h2>회원가입</h2>
+        <form action="#" method="post">
+            <label>이름 : </label>
+            <input type="text" id="이름">
+            <label>아이디 : </label>
+            <input type="text" id="아이디">
+            <label>비밀번호 : </label>
+            <input type="password" id="비번1">
+            <label>비밀번호 확인 : </label>
+            <input type="password" id="비번2">
+            <button type="submit" onclick="가입기능()">제출</button>
+        </form>
+    </div>
+
+    <style>
+        .visitor-comments{
+            flex: 1 1 100%;
+            background-color: white;
+            margin: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow:0 0 10px #ccc;
+        }
+        .visitor-comments form{
+            display: flex;
+            flex-direction: column;
+        }
+        .visitor-comments label{
+            padding:10px 0  10px;
+        }
+        .visitor-comments input{
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .visitor-comments button{
+            border: none;
+            background-color:#333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function 가입기능(){
+            const 이름 = $("#이름").val();
+            const 아이디 = $("#아이디").val();
+            const 비밀번호 = $("#비번1").val();
+            const 비번확인 = $("#비번2").val();
+
+            const namePattern = /^[가-힇]{2,5}$/;
+            const idPattern = /^[a-z]{5,10}$/;
+
+            if(!namePattern.test(이름)){
+                alert("올바른 형식의 이름이 아닙니다.");
+                return false;
+            }
+
+            if(!idPattern.test(아이디)){
+                alert("올바른 형식의 아이디가 아닙니다");
+                return false;
+            }
+
+            if(비밀번호 !== 비번확인){
+                alert("비밀번호가 일치하지 않습니다.");
+                return false;
+            }
+
+            alert("회원가입이 완료되었습니다.");
+            return true;
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 내 블로그. 접근 권한 메니저</p>
+    </footer>
+</body>
+</html>
