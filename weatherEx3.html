@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 앱</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .resultWeather {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px black solid;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .city {
+            font-size: 24px;
+        }
+
+        .weatherIcon {
+            width: 50px;
+            height: 50px;
+            margin: 10px 0;
+        }
+
+        .temperature {
+            font-size: 60px;
+            margin-top: 8px;
+        }
+
+        .sky {
+            font-size: 20px;
+            text-align: right;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="resultSeoul" class="resultWeather" style="display: none;">
+            <div class="city" id="citySeoul"></div>
+            <img class="weatherIcon" id="iconSeoul" alt="weather icon" />
+            <div class="temperature" id="temperatureSeoul"></div>
+            <div class="sky" id="skySeoul"></div>
+        </div>
+
+        <div id="resultBusan" class="resultWeather" style="display: none;">
+            <div class="city" id="cityBusan"></div>
+            <img class="weatherIcon" id="iconBusan" alt="weather icon" />
+            <div class="temperature" id="temperatureBusan"></div>
+            <div class="sky" id="skyBusan"></div>
+        </div>
+    </div>
+    
+
+    <script>
+        const API_KEY = '583741b92892b5bbd4e5416e788651f6';
+
+        async function fetchWeather(city, cityId) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod === 200) {
+                    document.getElementById(`city${cityId}`).innerText = data.name;
+                    document.getElementById(`temperature${cityId}`).innerText = Math.round(data.main.temp - 273.15) + "℃";
+                    document.getElementById(`sky${cityId}`).innerText = data.weather[0].main;
+                    document.getElementById(`icon${cityId}`).src = getWeatherIcon(data.weather[0].main);
+                    document.getElementById(`result${cityId}`).style.display = 'block';
+                } else {
+                    alert(`위치를 찾을 수 없습니다. 에러 코드: ${data.cod}`);
+                }
+            } catch (err) {
+                alert(err);
+            }
+        }
+
+        function getWeatherIcon(condition) {
+            switch (condition) {
+                case 'Rain':
+                    return ''; // 비 오는 아이콘 URL
+                case 'Clouds':
+                    return ''; // 구름 아이콘 URL
+                case 'Clear':
+                    return ' '; // 맑은 아이콘 URL
+                default:
+                    return ''; // 기본 아이콘 URL
+            }
+        }
+
+        // 서울과 부산 날씨 정보 자동으로 가져오기
+        fetchWeather('Seoul', 'Seoul');
+        fetchWeather('Busan', 'Busan');
+    </script>
+</body>
+
+</html>

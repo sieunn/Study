@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 앱</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        input {
+            padding: 16px;
+            border: 2px black solid;
+            border-radius: 16px;
+            width: 200px;
+        }
+
+        .resultWeather {
+            margin-top: 60px;
+            padding: 10px;
+            border: 1px black solid;
+            border-radius: 8px;
+        }
+
+        .city {
+            font-size: 24px;
+        }
+
+        .temperature {
+            font-size: 60px;
+            margin-top: 8px;
+        }
+
+        .sky {
+            font-size: 20px;
+            text-align: right;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input id="locationInput" placeholder="도시를 입력하세요" type="text" onkeypress="searchWeather(event)" />
+        
+        <div id="result" class="resultWeather" style="display: none;">
+            <div class="city" id="city"></div>
+            <div class="temperature" id="temperature"></div>
+            <div class="sky" id="sky"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = '583741b92892b5bbd4e5416e788651f6';
+
+        async function searchWeather(e) {
+            if (e.key === 'Enter') {
+                const location = document.getElementById('locationInput').value;
+                const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}`;
+
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    console.log(data);
+
+                    if (data.cod === 200) {
+                        document.getElementById('city').innerText = data.name;
+                        document.getElementById('temperature').innerText = Math.round(data.main.temp - 273.15) + "℃";
+                        document.getElementById('sky').innerText = data.weather[0].main;
+                        document.getElementById('result').style.display = 'block';
+                    } else {
+                        alert(`위치를 찾을 수 없습니다. 에러 코드: ${data.cod}`);
+                    }
+
+                } catch (err) {
+                    alert(err);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
